@@ -47,18 +47,67 @@
 // the values directly in the function parameter
 // =========================================
 
+// function Navbar({ storeName, tagline }) {
+//   // Now we can use storeName and tagline directly
+//   // no need to write props.storeName every time
+//   return (
+//     <nav className="navbar">
+//       <h2>🛍️ {storeName}</h2>
+//       <p>{tagline}</p>
+//     </nav>
+//   )
+// }
+
+
+// // We MUST export the component so other files can use it
+// // Without this line, no other file can import this component
+// export default Navbar
+// =========================================
+
+
+// useState — making your UI reactive
+//
+// import useState from React first
+// without this import, useState doesn't exist
+// =========================================
+import { useState } from 'react'
+
 function Navbar({ storeName, tagline }) {
-  // Now we can use storeName and tagline directly
-  // no need to write props.storeName every time
+
+  // =========================================
+  // useState returns an ARRAY with 2 items:
+  // [currentValue, functionToUpdateValue]
+  // We use array destructuring to name them
+  //
+  // WHY array and not object?
+  // So we can name them whatever we want
+  // =========================================
+  const [cartCount, setCartCount] = useState(0)
+  // cartCount = 0 to start
+  // setCartCount = function that updates cartCount
+  // and tells React to re-render the component
+
+  function handleAddToCart() {
+    // NEVER do: cartCount = cartCount + 1
+    // Always use the setter function!
+    // React needs to know the state changed
+    setCartCount(cartCount + 1)
+  }
+
   return (
     <nav className="navbar">
       <h2>🛍️ {storeName}</h2>
       <p>{tagline}</p>
+
+      {/* When button is clicked, handleAddToCart runs */}
+      {/* cartCount automatically shows the latest value */}
+      <button onClick={handleAddToCart}>
+        🛒 Cart ({cartCount})
+      </button>
     </nav>
   )
 }
 
-
-// We MUST export the component so other files can use it
-// Without this line, no other file can import this component
 export default Navbar
+
+
