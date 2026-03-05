@@ -7,6 +7,7 @@
 // Importing our Navbar component
 // The path './components/Navbar' tells React exactly where the file is
 import Navbar from './components/Navbar'
+import ProductList from './components/ProductList'
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
       <Navbar storeName="ShopReact" tagline="Best deals online" />
 
       <h1>React E-Commerce Store</h1>
+      {/* ProductList fetches and displays all products */}
+      <ProductList />
     </div>
   )
 }
