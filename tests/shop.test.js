@@ -103,6 +103,7 @@ test("order normalization drops delivery data and rejects invalid orders", () =>
   ]);
   assert.equal(normalizeOrder({ ...order, createdAt: "invalid" }), null);
   assert.equal(normalizeOrder({ ...order, items: [] }), null);
+  assert.equal(normalizeOrder({ ...order, createdAt: { toString: 3 } }), null);
 });
 test("unavailable or corrupt browser storage fails safely", () => {
   const previous = Object.getOwnPropertyDescriptor(globalThis, "localStorage");

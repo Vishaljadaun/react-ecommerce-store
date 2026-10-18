@@ -96,6 +96,7 @@ export function normalizeOrder(value) {
     !value ||
     typeof value.id !== "string" ||
     !/^FF-[A-Z0-9-]+$/.test(value.id) ||
+    typeof value.createdAt !== "string" ||
     !Number.isFinite(Date.parse(value.createdAt))
   )
     return null;
