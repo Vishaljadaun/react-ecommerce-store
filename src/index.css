@@ -1,88 +1,86 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
-  font-family: sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
+  margin: 0;
+  background: #faf8f3;
+  color: #292b25;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
-
-/* Navbar */
-.navbar {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 32px;
-  background-color: #1a1a2e;
-  color: white;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
-
-.navbar button {
-  margin-left: auto;
-  padding: 8px 16px;
-  background: #e94560;
-  color: white;
-  border: none;
-  border-radius: 8px;
+button,
+a,
+input,
+select {
+  touch-action: manipulation;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
   cursor: pointer;
-  font-size: 16px;
 }
-
-/* Product Grid */
-.product-list {
-  padding: 32px;
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 24px;
-  margin-top: 24px;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
-
-/* Product Card */
-.product-card {
-  background: white;
-  border-radius: 12px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #d96540;
+  outline-offset: 4px;
 }
-
-.product-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
+button {
+  transition:
+    background 0.18s,
+    transform 0.18s;
 }
-
-.product-card .category {
-  font-size: 12px;
-  color: #888;
-  text-transform: uppercase;
+button:active:not(:disabled) {
+  transform: translateY(1px);
 }
-
-.product-card .price {
-  font-size: 20px;
-  font-weight: bold;
-  color: #e94560;
+button svg,
+a svg {
+  flex-shrink: 0;
 }
-
-.product-card button {
-  margin-top: auto;
-  padding: 10px;
-  background: #1a1a2e;
+::selection {
+  background: #edc5a6;
+  color: #302b20;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+#main-content:focus {
+  outline: 0;
+}
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 15px;
+  z-index: 100;
+  background: #292b25;
   color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
+  padding: 15px;
 }
-
-.product-card button:hover {
-  background: #e94560;
+.skip-link:focus {
+  top: 10px;
 }

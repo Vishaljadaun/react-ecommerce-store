@@ -1,68 +1,54 @@
-// // =========================================
-// // ProductCard — receives ONE product via props
-// // and knows how to display it
-// //
-// // This component has ONE job:
-// // "Given a product object, show it nicely"
-// // =========================================
-
-// function ProductCard({ product }) {
-//   // product is an object that looks like:
-//   // {
-//   //   id: 1,
-//   //   title: "Fjallraven Backpack",
-//   //   price: 109.95,
-//   //   image: "https://...",
-//   //   category: "men's clothing",
-//   //   description: "..."
-//   // }
-
-//   return (
-//     <div className="product-card">
-//       {/* Product image */}
-//       <img
-//         src={product.image}
-//         alt={product.title}
-//       />
-
-//       {/* We use substring to keep long titles short */}
-//       <h3>{product.title.substring(0, 40)}...</h3>
-
-//       {/* Category badge */}
-//       <p className="category">{product.category}</p>
-
-//       {/* Price */}
-//       <p className="price">${product.price}</p>
-
-//       {/* Add to Cart button — we'll wire this up next */}
-//       <button>Add to Cart</button>
-//     </div>
-//   )
-// }
-
-// export default ProductCard
-
-// =========================================
-// ProductCard receives onAddToCart from ProductList
-// When button is clicked it calls that function
-// which actually lives up in App.jsx
-// =========================================
-function ProductCard({ product, onAddToCart }) {
-
+import Icon from "./Icon";
+import { money } from "../lib/shop";
+export default function ProductCard({
+  product: p,
+  onAdd,
+  saved,
+  onSave,
+  quantity = 0,
+}) {
   return (
-    <div className="product-card">
-      <img src={product.image} alt={product.title} />
-      <h3>{product.title.substring(0, 40)}...</h3>
-      <p className="category">{product.category}</p>
-      <p className="price">${product.price}</p>
-
-      {/* onClick calls onAddToCart which updates state in App */}
-      {/* React then re-renders Navbar with the new cartCount */}
-      <button onClick={onAddToCart}>
-        Add to Cart
-      </button>
-    </div>
-  )
+    <article className="product-card">
+      <div className="product-visual" style={{ background: p.background }}>
+        {p.tag && <span className="product-tag">{p.tag}</span>}
+        <a href={`#/product/${p.id}`} aria-label={`View ${p.name}`}>
+          <img
+            src={`/art/${p.art}.svg`}
+            alt={p.name}
+            loading="lazy"
+            width="480"
+            height="480"
+          />
+        </a>
+        <button
+          className={`save-button ${saved ? "is-saved" : ""}`}
+          onClick={() => onSave(p.id)}
+          aria-label={`${saved ? "Unsave" : "Save"} ${p.name}`}
+          aria-pressed={saved}
+        >
+          <Icon name="heart" />
+        </button>
+        <button
+          className="quick-add"
+          disabled={quantity >= p.limit}
+          onClick={() => onAdd(p.id)}
+          aria-label={`Add ${p.name} to bag`}
+        >
+          <Icon name="plus" size={16} />
+          {quantity >= p.limit ? "Bag limit reached" : "Add to bag"}
+        </button>
+      </div>
+      <div className="product-info">
+        <div>
+          <p>
+            {p.category} <span> / {p.color}</span>
+          </p>
+          <h3>
+            <a href={`#/product/${p.id}`}>{p.name}</a>
+          </h3>
+        </div>
+        <strong>{money(p.price)}</strong>
+      </div>
+    </article>
+  );
 }
-
-export default ProductCard
