@@ -1,5 +1,7 @@
 # Form & Field
 
+[Open the live demo](https://form-field-store.onrender.com) · [Automated checks](https://github.com/Vishaljadaun/react-ecommerce-store/actions)
+
 A responsive React storefront for a fictional collection of everyday objects. This project takes a small product-list demo through the complete frontend shopping journey: discovery, product details, favourites, a persistent bag, and a simulated checkout.
 
 **Portfolio demo only:** no real purchases, payment processing, inventory reservation, customer accounts, or fulfilment. Products, specifications, prices, and delivery rules are fictional. Use the sample delivery details in checkout.
